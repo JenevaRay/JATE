@@ -38,6 +38,7 @@ module.exports = () => {
         inject: true,
         background_color: '#335da4',
         theme_color: '#335da4',
+        display: 'standalone',
         start_url: './',
         publicPath: './',
         icons: [
@@ -47,7 +48,8 @@ module.exports = () => {
             destination: path.join('assets', 'icons')
           }
         ]
-      })
+      }),
+
     ],
 
     module: {
@@ -66,6 +68,11 @@ module.exports = () => {
               plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             },
           },
+        },
+        {
+          test: /\.m?js$/,
+          enforce: 'pre',
+          use: ['source-map-loader']
         }
       ],
     },

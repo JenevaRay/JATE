@@ -1,4 +1,4 @@
-const { offlineFallback, warmStrategyCache } = require('workbox-recipes');
+const { imageCache, staticResourceCache, googleFontsCache, offlineFallback, warmStrategyCache } = require('workbox-recipes');
 const { CacheFirst } = require('workbox-strategies');
 const { registerRoute } = require('workbox-routing');
 const { CacheableResponsePlugin } = require('workbox-cacheable-response');
@@ -26,5 +26,16 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// TODO: Implement asset caching
-registerRoute();
+// offlineFallback silently depends on this for font caching.
+googleFontsCache()
+
+// this is a pre-shipped pattern that (default) matches for 'style', 'script', and 'worker' destinations.  Seems to be pretty boilerplate, caching with both 0 and 200 statuses.
+staticResourceCache()
+
+// uses a warmed cache to (default) cache up to a maximum of 60 images (we won't use that many), each for 30 days.  
+imageCache()
+
+
+offlineFallback({
+  pageFallback: '/offline.html'
+})
