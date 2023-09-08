@@ -19,6 +19,8 @@ const pageCache = new CacheFirst({
   ],
 });
 
+let urlsToCache = ['/index.html', '/']
+
 warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
@@ -36,6 +38,24 @@ staticResourceCache()
 imageCache()
 
 
-offlineFallback({
-  pageFallback: '/offline.html'
+offlineFallback(
+  {
+    pageFallback: '/index.html'
+  }
+)
+
+self.addEventListener('install', e => {
+
 })
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/'}).then(()=>{
+      console.log('Service Worker registered with scope')
+    }).catch(()=>{
+      console.error('Service Worker registration failed!')
+    })
+  })
+}
+
+// self.addEventListener

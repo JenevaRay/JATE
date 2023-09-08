@@ -38,5 +38,6 @@
   "start_url": "./",
   "description": "\"Just\" Another Text Editor",
   "background_color": "#335da4",
-  "theme_color": "#335da4"
+  "theme_color": "#335da4",
+  "prefer_related_applications": false
 }

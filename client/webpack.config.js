@@ -41,6 +41,8 @@ module.exports = () => {
         display: 'standalone',
         start_url: './',
         publicPath: './',
+        prefer_related_applications: false,
+        // related_applications: [] doesn't exist yet!
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
