@@ -19,8 +19,6 @@ const pageCache = new CacheFirst({
   ],
 });
 
-let urlsToCache = ['/index.html', '/']
-
 warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
@@ -57,5 +55,3 @@ if ('serviceWorker' in navigator) {
     })
   })
 }
-
-// self.addEventListener
