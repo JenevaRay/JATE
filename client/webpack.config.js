@@ -3,11 +3,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
-// import "./src/style.css"
-
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
-
 module.exports = () => {
   return {
     mode: 'development',
@@ -21,11 +16,9 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        // this seems like boilerplate?
         template: './index.html',
         title: 'JATE - Just Another Text Editor'
       }),
-      // new GenerateSW(),
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js'
@@ -36,8 +29,9 @@ module.exports = () => {
         description: '"Just" Another Text Editor',
         fingerprints: false,
         inject: true,
-        background_color: '#335da4',
-        theme_color: '#335da4',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        orientation: 'portrait',
         display: 'standalone',
         start_url: './',
         publicPath: './',
